@@ -9,175 +9,96 @@
   <link rel="icon" type="image/png" href="assets/icon.png">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .account-page { max-width: 520px; margin: 0 auto; padding: 40px 24px 80px; }
+    .account-page { max-width: 600px; margin: 0 auto; padding: 40px 24px 80px; }
     .account-page h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.2rem; margin-bottom: 8px; color: var(--parchment); }
     .account-page .subtitle { color: var(--ash); font-size: 0.95rem; margin-bottom: 40px; }
 
-    /* Auth form */
     .auth-form { display: flex; flex-direction: column; gap: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label { font-size: 0.85rem; font-weight: 500; color: var(--ash); }
     .form-group input {
-      padding: 12px 16px;
-      background: var(--smoke);
-      border: 1px solid var(--surface);
-      border-radius: 8px;
-      color: var(--parchment);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
+      padding: 12px 16px; background: var(--smoke); border: 1px solid var(--surface);
+      border-radius: 8px; color: var(--parchment); font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; outline: none; transition: border-color 0.2s;
     }
     .form-group input:focus { border-color: var(--terracotta); }
     .form-group input::placeholder { color: var(--ash); }
 
-    .error-msg {
-      background: #3D1A1A;
-      border: 1px solid #6B2020;
-      color: #E8A0A0;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      display: none;
-    }
-    .success-msg {
-      background: #1A2E1A;
-      border: 1px solid #2E5A2E;
-      color: #A0D4A0;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      display: none;
-    }
+    .error-msg { background: #3D1A1A; border: 1px solid #6B2020; color: #E8A0A0; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; display: none; margin-bottom: 16px; }
+    .success-msg { background: #1A2E1A; border: 1px solid #2E5A2E; color: #A0D4A0; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; display: none; margin-bottom: 16px; }
 
-    /* Dashboard */
     .dashboard { display: none; }
-    .user-info {
-      background: var(--smoke);
-      border: 1px solid var(--surface);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 32px;
-    }
-    .user-email {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--parchment);
-      margin-bottom: 4px;
-    }
+
+    .user-info { background: var(--smoke); border: 1px solid var(--surface); border-radius: 12px; padding: 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .user-email { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; color: var(--parchment); margin-bottom: 2px; }
     .user-meta { color: var(--ash); font-size: 0.85rem; }
+    .credits-badge { background: var(--terracotta); color: var(--cream); padding: 8px 16px; border-radius: 8px; font-weight: 500; font-size: 0.95rem; text-align: center; }
+    .credits-badge .credits-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; display: block; }
 
-    .data-section {
-      background: var(--smoke);
-      border: 1px solid var(--surface);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 16px;
-    }
-    .data-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--parchment);
-      margin-bottom: 4px;
-    }
-    .data-section p { color: var(--ash); font-size: 0.9rem; margin-bottom: 16px; }
-    .data-count {
-      display: inline-block;
-      background: var(--surface);
-      color: var(--parchment);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
+    .card { background: var(--smoke); border: 1px solid var(--surface); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+    .card h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--parchment); margin-bottom: 4px; }
+    .card > p { color: var(--ash); font-size: 0.9rem; margin-bottom: 16px; }
 
-    .btn-danger {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #6B2020;
-      color: #E8A0A0;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 0.9rem;
-      border-radius: 8px;
-      border: 1px solid #8B3030;
-      cursor: pointer;
-      transition: background 0.2s;
+    /* Session history */
+    .session-list { display: flex; flex-direction: column; gap: 10px; }
+    .session-item {
+      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+      background: var(--char); border: 1px solid var(--surface); border-radius: 10px;
+      border-left: 4px solid var(--ash);
     }
+    .session-flag { font-size: 1.5rem; flex-shrink: 0; }
+    .session-details { flex: 1; min-width: 0; }
+    .session-guide { font-weight: 500; color: var(--parchment); font-size: 0.95rem; }
+    .session-dish { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--saffron); font-size: 0.95rem; }
+    .session-date { color: var(--ash); font-size: 0.8rem; }
+    .session-status {
+      flex-shrink: 0; padding: 4px 10px; border-radius: 6px;
+      font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .status-completed { background: #1A2E1A; color: #A0D4A0; border: 1px solid #2E5A2E; }
+    .status-active { background: #2E2A1A; color: var(--saffron); border: 1px solid #4A4020; }
+    .status-abandoned { background: #2E2020; color: #9A8A7C; border: 1px solid #3D322C; }
+    .empty-state { color: var(--ash); font-size: 0.9rem; font-style: italic; padding: 16px 0; }
+
+    /* Data overview */
+    .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .data-item { background: var(--char); border: 1px solid var(--surface); border-radius: 8px; padding: 12px 14px; }
+    .data-item .data-label { color: var(--ash); font-size: 0.8rem; margin-bottom: 2px; }
+    .data-item .data-value { color: var(--parchment); font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; }
+
+    /* Clear data options */
+    .clear-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--surface); }
+    .clear-row:last-child { border-bottom: none; }
+    .clear-label { color: var(--parchment); font-size: 0.9rem; }
+    .clear-label span { display: block; color: var(--ash); font-size: 0.8rem; margin-top: 2px; }
+
+    .btn-sm { padding: 6px 14px; font-size: 0.8rem; border-radius: 6px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: all 0.2s; }
+    .btn-sm-danger { background: transparent; color: #E8A0A0; border: 1px solid #6B2020; }
+    .btn-sm-danger:hover { background: #3D1A1A; }
+
+    .btn-danger { display: inline-block; padding: 10px 20px; background: #6B2020; color: #E8A0A0; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; border-radius: 8px; border: 1px solid #8B3030; cursor: pointer; transition: background 0.2s; }
     .btn-danger:hover { background: #8B3030; color: #FFD0D0; }
-
-    .btn-outline {
-      display: inline-block;
-      padding: 10px 20px;
-      background: transparent;
-      color: var(--ash);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 0.9rem;
-      border-radius: 8px;
-      border: 1px solid var(--surface);
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
+    .btn-outline { display: inline-block; padding: 10px 20px; background: transparent; color: var(--ash); font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; border-radius: 8px; border: 1px solid var(--surface); cursor: pointer; transition: border-color 0.2s; }
     .btn-outline:hover { border-color: var(--ash); color: var(--parchment); }
 
-    .danger-zone {
-      border-color: #4A1A1A;
-      margin-top: 40px;
-    }
+    .danger-zone { border-color: #4A1A1A; margin-top: 24px; }
     .danger-zone h3 { color: #E8A0A0; }
-
     .actions-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* Confirmation modal */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; }
     .modal-overlay.active { display: flex; }
-    .modal {
-      background: var(--char);
-      border: 1px solid var(--surface);
-      border-radius: 12px;
-      padding: 32px;
-      max-width: 440px;
-      width: 90%;
-    }
-    .modal h3 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #E8A0A0;
-      margin-bottom: 12px;
-    }
+    .modal { background: var(--char); border: 1px solid var(--surface); border-radius: 12px; padding: 32px; max-width: 440px; width: 90%; }
+    .modal h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; color: #E8A0A0; margin-bottom: 12px; }
     .modal p { color: var(--ash); font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
-    .modal .confirm-input {
-      width: 100%;
-      margin: 16px 0;
-    }
     .modal .actions-row { margin-top: 20px; justify-content: flex-end; }
 
-    .loading { opacity: 0.5; pointer-events: none; }
-    .spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid var(--ash);
-      border-top-color: var(--parchment);
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      margin-right: 8px;
-      vertical-align: middle;
-    }
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--ash); border-top-color: var(--parchment); border-radius: 50%; animation: spin 0.6s linear infinite; margin-right: 8px; vertical-align: middle; }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 480px) {
+      .data-grid { grid-template-columns: 1fr; }
+      .user-info { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
@@ -200,10 +121,8 @@
     <div id="auth-section">
       <h1>My Account</h1>
       <p class="subtitle">Sign in to manage your account and data.</p>
-
       <div id="error-msg" class="error-msg"></div>
       <div id="success-msg" class="success-msg"></div>
-
       <form class="auth-form" id="login-form" onsubmit="return handleLogin(event)">
         <div class="form-group">
           <label for="email">Email</label>
@@ -217,54 +136,89 @@
       </form>
     </div>
 
-    <!-- Dashboard (shown after login) -->
+    <!-- Dashboard -->
     <div id="dashboard" class="dashboard">
       <h1>My Account</h1>
       <p class="subtitle">Manage your data and account settings.</p>
-
       <div id="dash-error" class="error-msg"></div>
       <div id="dash-success" class="success-msg"></div>
 
+      <!-- User info + credits -->
       <div class="user-info">
-        <div class="user-email" id="user-email"></div>
-        <div class="user-meta" id="user-meta"></div>
-      </div>
-
-      <!-- Data overview -->
-      <div class="data-section">
-        <h3>Your Data</h3>
-        <p>Here's what we store for your account.</p>
-        <div id="data-summary">
-          <div style="margin-bottom: 12px;">
-            <strong style="color: var(--parchment); font-size: 0.9rem;">Sessions</strong>
-            <span class="data-count" id="sessions-count">—</span>
-          </div>
-          <div style="margin-bottom: 12px;">
-            <strong style="color: var(--parchment); font-size: 0.9rem;">Character Memories</strong>
-            <span class="data-count" id="memories-count">—</span>
-          </div>
-          <div style="margin-bottom: 12px;">
-            <strong style="color: var(--parchment); font-size: 0.9rem;">Voice Notes</strong>
-            <span class="data-count" id="notes-count">—</span>
-          </div>
-          <div>
-            <strong style="color: var(--parchment); font-size: 0.9rem;">Session Credits</strong>
-            <span class="data-count" id="credits-count">—</span>
-          </div>
+        <div>
+          <div class="user-email" id="user-email"></div>
+          <div class="user-meta" id="user-meta"></div>
+        </div>
+        <div class="credits-badge">
+          <span class="credits-num" id="credits-num">—</span>
+          credits
         </div>
       </div>
 
-      <!-- Export data -->
-      <div class="data-section">
-        <h3>Export Your Data</h3>
-        <p>Download a copy of all your data as a JSON file.</p>
-        <button class="btn-outline" onclick="exportData()">Download My Data</button>
+      <!-- Session History -->
+      <div class="card">
+        <h3>Session History</h3>
+        <p>Your cooking sessions and their status.</p>
+        <div class="session-list" id="session-list">
+          <div class="empty-state">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Data Overview -->
+      <div class="card">
+        <h3>Your Data</h3>
+        <p>What we store for your account.</p>
+        <div class="data-grid">
+          <div class="data-item">
+            <div class="data-label">Sessions</div>
+            <div class="data-value" id="sessions-count">—</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Character Memories</div>
+            <div class="data-value" id="memories-count">—</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Voice Notes</div>
+            <div class="data-value" id="notes-count">—</div>
+          </div>
+          <div class="data-item">
+            <div class="data-label">Relationships</div>
+            <div class="data-value" id="relationships-count">—</div>
+          </div>
+        </div>
+        <button class="btn-outline" onclick="exportData()" style="width: 100%;">Download All My Data</button>
+      </div>
+
+      <!-- Clear specific data -->
+      <div class="card">
+        <h3>Clear Data</h3>
+        <p>Selectively clear specific types of data without deleting your account.</p>
+        <div class="clear-row">
+          <div class="clear-label">Session History<span>Remove all past session records</span></div>
+          <button class="btn-sm btn-sm-danger" onclick="clearData('sessions')">Clear</button>
+        </div>
+        <div class="clear-row">
+          <div class="clear-label">Character Memories<span>Guides will forget what they know about you</span></div>
+          <button class="btn-sm btn-sm-danger" onclick="clearData('character_memories')">Clear</button>
+        </div>
+        <div class="clear-row">
+          <div class="clear-label">Voice Notes<span>Remove all post-session voice notes</span></div>
+          <button class="btn-sm btn-sm-danger" onclick="clearData('voice_notes')">Clear</button>
+        </div>
+        <div class="clear-row">
+          <div class="clear-label">Character Relationships<span>Reset all guide relationship progress</span></div>
+          <button class="btn-sm btn-sm-danger" onclick="clearData('user_character_relationships')">Clear</button>
+        </div>
+        <div class="clear-row">
+          <div class="clear-label">All Data<span>Clear everything above at once</span></div>
+          <button class="btn-sm btn-sm-danger" onclick="clearAllData()">Clear All</button>
+        </div>
       </div>
 
       <!-- Danger zone -->
-      <div class="data-section danger-zone">
-        <h3>Delete Account &amp; Data</h3>
-        <p>Permanently delete your account and all associated data. This action cannot be undone. Your session credits will be lost.</p>
+      <div class="card danger-zone">
+        <h3>Delete Account</h3>
+        <p>Permanently delete your account and all associated data, including any remaining session credits. This cannot be undone.</p>
         <div class="actions-row">
           <button class="btn-danger" onclick="showDeleteModal()">Delete My Account</button>
           <button class="btn-outline" onclick="handleSignOut()">Sign Out</button>
@@ -289,12 +243,24 @@
       <p><strong style="color: #E8A0A0;">This cannot be undone.</strong></p>
       <div class="form-group">
         <label for="confirm-delete" style="color: #E8A0A0;">Type DELETE to confirm</label>
-        <input type="text" id="confirm-delete" class="confirm-input" placeholder="DELETE" autocomplete="off"
-          style="padding:12px 16px; background:var(--smoke); border:1px solid #6B2020; border-radius:8px; color:var(--parchment); font-family:'DM Sans',sans-serif; font-size:1rem; outline:none;">
+        <input type="text" id="confirm-delete" placeholder="DELETE" autocomplete="off"
+          style="padding:12px 16px; background:var(--smoke); border:1px solid #6B2020; border-radius:8px; color:var(--parchment); font-family:'DM Sans',sans-serif; font-size:1rem; outline:none; width:100%; margin-top:8px;">
       </div>
-      <div class="actions-row">
+      <div class="actions-row" style="margin-top: 20px; justify-content: flex-end;">
         <button class="btn-outline" onclick="hideDeleteModal()">Cancel</button>
         <button class="btn-danger" id="confirm-delete-btn" onclick="handleDeleteAccount()">Delete Everything</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clear data confirmation modal -->
+  <div class="modal-overlay" id="clear-modal">
+    <div class="modal">
+      <h3 id="clear-modal-title">Clear data?</h3>
+      <p id="clear-modal-desc">Are you sure? This cannot be undone.</p>
+      <div class="actions-row" style="margin-top: 20px; justify-content: flex-end;">
+        <button class="btn-outline" onclick="hideClearModal()">Cancel</button>
+        <button class="btn-danger" id="clear-confirm-btn" onclick="confirmClear()">Clear</button>
       </div>
     </div>
   </div>
@@ -305,6 +271,7 @@
       <nav class="footer-links">
         <a href="terms.html">Terms of Service</a>
         <a href="privacy.html">Privacy Policy</a>
+        <a href="account.html">My Account</a>
         <a href="mailto:sundaysauceapp@gmail.com">Contact</a>
       </nav>
       <span class="footer-copy">&copy; 2026 Sunday Sauce LLC. All rights reserved.</span>
@@ -313,16 +280,28 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
-    // ── Configuration ──
-    // Fill in your Supabase project URL and anon key
     const SUPABASE_URL = 'https://ucdjvmoushzkfgghhpmp.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_mblO9OE9YSzQubL_X7xMNg_QLMKIyRW';
-
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentUser = null;
+    let pendingClearAction = null;
 
-    // ── Check session on load ──
+    // Guide metadata for display
+    const GUIDES = {
+      lorenzo:  { name: 'Lorenzo',  flag: '\u{1F1EE}\u{1F1F9}', color: '#E85D3A', dish: 'Tagliatelle al Rag\u00f9 Bolognese' },
+      fatima:   { name: 'Fatima',   flag: '\u{1F1F2}\u{1F1E6}', color: '#D4943A', dish: 'Chicken Tagine' },
+      yuki:     { name: 'Yuki',     flag: '\u{1F1EF}\u{1F1F5}', color: '#C75B7A', dish: 'Handmade Gyoza' },
+      isabelle: { name: 'Isabelle', flag: '\u{1F1EB}\u{1F1F7}', color: '#4A6FA5', dish: 'Coq au Vin' },
+      carmen:   { name: 'Carmen',   flag: '\u{1F1F2}\u{1F1FD}', color: '#8B4513', dish: 'Mole Negro' },
+      mei:      { name: 'Mei',      flag: '\u{1F1E8}\u{1F1F3}', color: '#D42C2C', dish: 'Mapo Tofu' },
+      priya:    { name: 'Priya',    flag: '\u{1F1EE}\u{1F1F3}', color: '#E8A317', dish: 'Kerala Fish Curry' },
+      hassan:   { name: 'Hassan',   flag: '\u{1F1F9}\u{1F1F7}', color: '#C41E3A', dish: 'Iskender Kebab' },
+      elena:    { name: 'Elena',    flag: '\u{1F1F2}\u{1F1FD}', color: '#DAA520', dish: 'Mole Amarillo' },
+      krit:     { name: 'Krit',     flag: '\u{1F1F9}\u{1F1ED}', color: '#2E8B57', dish: 'Thai Green Curry' }
+    };
+
+    // ── Init ──
     async function init() {
       const { data: { session } } = await sb.auth.getSession();
       if (session) {
@@ -343,6 +322,17 @@
       const el = document.getElementById(id);
       el.textContent = msg;
       el.style.display = 'block';
+      setTimeout(() => el.style.display = 'none', 6000);
+    }
+    function formatDuration(seconds) {
+      if (!seconds) return '';
+      const m = Math.floor(seconds / 60);
+      if (m < 60) return m + ' min';
+      const h = Math.floor(m / 60);
+      return h + 'h ' + (m % 60) + 'm';
+    }
+    function formatDate(dateStr) {
+      return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     }
 
     // ── Login ──
@@ -351,19 +341,16 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const btn = document.getElementById('login-btn');
-
-      btn.innerHTML = '<span class="spinner"></span>Signing in...';
+      btn.innerHTML = '<span class="spinner"></span>Signing in\u2026';
       btn.disabled = true;
 
       const { data, error } = await sb.auth.signInWithPassword({ email, password });
-
       if (error) {
         showError('error-msg', error.message);
         btn.textContent = 'Sign In';
         btn.disabled = false;
         return;
       }
-
       currentUser = data.user;
       showDashboard();
     }
@@ -374,26 +361,57 @@
       document.getElementById('dashboard').style.display = 'block';
 
       document.getElementById('user-email').textContent = currentUser.email;
-      const created = new Date(currentUser.created_at).toLocaleDateString('en-US', {
-        year: 'numeric', month: 'long', day: 'numeric'
-      });
-      document.getElementById('user-meta').textContent = 'Member since ' + created;
+      document.getElementById('user-meta').textContent = 'Member since ' + formatDate(currentUser.created_at);
 
-      // Fetch data counts
-      const [sessions, memories, notes, profile] = await Promise.all([
-        sb.from('sessions').select('id', { count: 'exact', head: true }),
+      loadData();
+    }
+
+    async function loadData() {
+      const [sessionsRes, memoriesRes, notesRes, relationshipsRes, profileRes] = await Promise.all([
+        sb.from('sessions').select('*').order('started_at', { ascending: false }),
         sb.from('character_memories').select('id', { count: 'exact', head: true }),
         sb.from('voice_notes').select('id', { count: 'exact', head: true }),
+        sb.from('user_character_relationships').select('id', { count: 'exact', head: true }),
         sb.from('profiles').select('session_credits').eq('id', currentUser.id).single()
       ]);
 
-      document.getElementById('sessions-count').textContent = (sessions.count ?? 0) + ' records';
-      document.getElementById('memories-count').textContent = (memories.count ?? 0) + ' records';
-      document.getElementById('notes-count').textContent = (notes.count ?? 0) + ' records';
-      document.getElementById('credits-count').textContent = (profile.data?.session_credits ?? 0) + ' remaining';
+      // Credits
+      const credits = profileRes.data?.session_credits ?? 0;
+      document.getElementById('credits-num').textContent = credits;
+
+      // Data counts
+      const sessions = sessionsRes.data || [];
+      document.getElementById('sessions-count').textContent = sessions.length;
+      document.getElementById('memories-count').textContent = memoriesRes.count ?? 0;
+      document.getElementById('notes-count').textContent = notesRes.count ?? 0;
+      document.getElementById('relationships-count').textContent = relationshipsRes.count ?? 0;
+
+      // Session history
+      const listEl = document.getElementById('session-list');
+      if (sessions.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">No sessions yet. Start cooking in the app!</div>';
+        return;
+      }
+
+      listEl.innerHTML = sessions.map(s => {
+        const guide = GUIDES[s.character_id] || { name: s.character_id, flag: '', color: '#5A4A42', dish: s.recipe_id };
+        const statusClass = 'status-' + (s.status || 'active');
+        const statusLabel = s.status === 'completed' ? 'Completed' : s.status === 'abandoned' ? 'Left early' : 'In progress';
+        const duration = s.duration_seconds ? ' \u00b7 ' + formatDuration(s.duration_seconds) : '';
+
+        return '<div class="session-item" style="border-left-color:' + guide.color + '">' +
+          '<span class="session-flag">' + guide.flag + '</span>' +
+          '<div class="session-details">' +
+            '<div class="session-guide">' + guide.name + '</div>' +
+            '<div class="session-dish">' + guide.dish + '</div>' +
+            '<div class="session-date">' + formatDate(s.started_at) + duration + '</div>' +
+          '</div>' +
+          '<span class="session-status ' + statusClass + '">' + statusLabel + '</span>' +
+        '</div>';
+      }).join('');
     }
 
-    // ── Export data ──
+    // ── Export ──
     async function exportData() {
       const [profileRes, sessionsRes, memoriesRes, notesRes, relationshipsRes] = await Promise.all([
         sb.from('profiles').select('*').eq('id', currentUser.id).single(),
@@ -402,7 +420,6 @@
         sb.from('voice_notes').select('*'),
         sb.from('user_character_relationships').select('*')
       ]);
-
       const exportObj = {
         exported_at: new Date().toISOString(),
         account: { email: currentUser.email, created_at: currentUser.created_at },
@@ -412,7 +429,6 @@
         voice_notes: notesRes.data || [],
         character_relationships: relationshipsRes.data || []
       };
-
       const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -420,8 +436,62 @@
       a.download = 'sunday-sauce-data-' + new Date().toISOString().slice(0, 10) + '.json';
       a.click();
       URL.revokeObjectURL(url);
-
       showSuccess('dash-success', 'Your data has been downloaded.');
+    }
+
+    // ── Clear specific data ──
+    const CLEAR_LABELS = {
+      sessions: 'session history',
+      character_memories: 'character memories',
+      voice_notes: 'voice notes',
+      user_character_relationships: 'character relationships'
+    };
+
+    function clearData(table) {
+      pendingClearAction = async () => {
+        const { error } = await sb.from(table).delete().eq('user_id', currentUser.id);
+        if (error) throw error;
+      };
+      document.getElementById('clear-modal-title').textContent = 'Clear ' + CLEAR_LABELS[table] + '?';
+      document.getElementById('clear-modal-desc').textContent = 'This will permanently delete all your ' + CLEAR_LABELS[table] + '. This cannot be undone.';
+      document.getElementById('clear-modal').classList.add('active');
+    }
+
+    function clearAllData() {
+      pendingClearAction = async () => {
+        await Promise.all([
+          sb.from('sessions').delete().eq('user_id', currentUser.id),
+          sb.from('character_memories').delete().eq('user_id', currentUser.id),
+          sb.from('voice_notes').delete().eq('user_id', currentUser.id),
+          sb.from('user_character_relationships').delete().eq('user_id', currentUser.id),
+          sb.from('character_introductions').delete().eq('user_id', currentUser.id)
+        ]);
+      };
+      document.getElementById('clear-modal-title').textContent = 'Clear all data?';
+      document.getElementById('clear-modal-desc').textContent = 'This will permanently delete all your sessions, memories, voice notes, and relationship progress. Your account and credits will be kept. This cannot be undone.';
+      document.getElementById('clear-modal').classList.add('active');
+    }
+
+    async function confirmClear() {
+      const btn = document.getElementById('clear-confirm-btn');
+      btn.innerHTML = '<span class="spinner"></span>Clearing\u2026';
+      btn.disabled = true;
+      try {
+        await pendingClearAction();
+        hideClearModal();
+        showSuccess('dash-success', 'Data cleared successfully.');
+        loadData();
+      } catch (err) {
+        hideClearModal();
+        showError('dash-error', 'Failed to clear data: ' + err.message);
+      }
+      btn.textContent = 'Clear';
+      btn.disabled = false;
+    }
+
+    function hideClearModal() {
+      document.getElementById('clear-modal').classList.remove('active');
+      pendingClearAction = null;
     }
 
     // ── Delete account ──
@@ -434,34 +504,22 @@
     }
 
     async function handleDeleteAccount() {
-      const confirmVal = document.getElementById('confirm-delete').value;
-      if (confirmVal !== 'DELETE') {
+      if (document.getElementById('confirm-delete').value !== 'DELETE') {
         showError('dash-error', 'Please type DELETE to confirm account deletion.');
         hideDeleteModal();
         return;
       }
-
       const btn = document.getElementById('confirm-delete-btn');
-      btn.innerHTML = '<span class="spinner"></span>Deleting...';
+      btn.innerHTML = '<span class="spinner"></span>Deleting\u2026';
       btn.disabled = true;
-
       try {
-        // Delete user data from all tables (cascade from profiles handles most)
-        // Delete profile — cascades to sessions, memories, voice_notes, relationships, introductions
-        const { error: deleteError } = await sb.from('profiles').delete().eq('id', currentUser.id);
-
-        if (deleteError) {
-          throw new Error('Failed to delete data: ' + deleteError.message);
-        }
-
-        // Sign out
+        const { error } = await sb.from('profiles').delete().eq('id', currentUser.id);
+        if (error) throw new Error(error.message);
         await sb.auth.signOut();
-
         hideDeleteModal();
         document.getElementById('dashboard').style.display = 'none';
         document.getElementById('auth-section').style.display = 'block';
-        showSuccess('success-msg', 'Your account and all associated data have been permanently deleted.');
-
+        showSuccess('success-msg', 'Your account and all data have been permanently deleted.');
         currentUser = null;
       } catch (err) {
         hideDeleteModal();
@@ -479,6 +537,5 @@
       document.getElementById('auth-section').style.display = 'block';
     }
   </script>
-
 </body>
 </html>
