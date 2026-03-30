@@ -318,13 +318,13 @@
     const SUPABASE_URL = 'https://ucdjvmoushzkfgghhpmp.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_mblO9OE9YSzQubL_X7xMNg_QLMKIyRW';
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentUser = null;
 
     // ── Check session on load ──
     async function init() {
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session } } = await sb.auth.getSession();
       if (session) {
         currentUser = session.user;
         showDashboard();
@@ -355,7 +355,7 @@
       btn.innerHTML = '<span class="spinner"></span>Signing in...';
       btn.disabled = true;
 
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await sb.auth.signInWithPassword({ email, password });
 
       if (error) {
         showError('error-msg', error.message);
@@ -381,10 +381,10 @@
 
       // Fetch data counts
       const [sessions, memories, notes, profile] = await Promise.all([
-        supabase.from('sessions').select('id', { count: 'exact', head: true }),
-        supabase.from('character_memories').select('id', { count: 'exact', head: true }),
-        supabase.from('voice_notes').select('id', { count: 'exact', head: true }),
-        supabase.from('profiles').select('session_credits').eq('id', currentUser.id).single()
+        sb.from('sessions').select('id', { count: 'exact', head: true }),
+        sb.from('character_memories').select('id', { count: 'exact', head: true }),
+        sb.from('voice_notes').select('id', { count: 'exact', head: true }),
+        sb.from('profiles').select('session_credits').eq('id', currentUser.id).single()
       ]);
 
       document.getElementById('sessions-count').textContent = (sessions.count ?? 0) + ' records';
@@ -396,11 +396,11 @@
     // ── Export data ──
     async function exportData() {
       const [profileRes, sessionsRes, memoriesRes, notesRes, relationshipsRes] = await Promise.all([
-        supabase.from('profiles').select('*').eq('id', currentUser.id).single(),
-        supabase.from('sessions').select('*'),
-        supabase.from('character_memories').select('id, character_id, memory_type, content, metadata, importance, created_at'),
-        supabase.from('voice_notes').select('*'),
-        supabase.from('user_character_relationships').select('*')
+        sb.from('profiles').select('*').eq('id', currentUser.id).single(),
+        sb.from('sessions').select('*'),
+        sb.from('character_memories').select('id, character_id, memory_type, content, metadata, importance, created_at'),
+        sb.from('voice_notes').select('*'),
+        sb.from('user_character_relationships').select('*')
       ]);
 
       const exportObj = {
@@ -448,14 +448,14 @@
       try {
         // Delete user data from all tables (cascade from profiles handles most)
         // Delete profile — cascades to sessions, memories, voice_notes, relationships, introductions
-        const { error: deleteError } = await supabase.from('profiles').delete().eq('id', currentUser.id);
+        const { error: deleteError } = await sb.from('profiles').delete().eq('id', currentUser.id);
 
         if (deleteError) {
           throw new Error('Failed to delete data: ' + deleteError.message);
         }
 
         // Sign out
-        await supabase.auth.signOut();
+        await sb.auth.signOut();
 
         hideDeleteModal();
         document.getElementById('dashboard').style.display = 'none';
@@ -473,7 +473,7 @@
 
     // ── Sign out ──
     async function handleSignOut() {
-      await supabase.auth.signOut();
+      await sb.auth.signOut();
       currentUser = null;
       document.getElementById('dashboard').style.display = 'none';
       document.getElementById('auth-section').style.display = 'block';
