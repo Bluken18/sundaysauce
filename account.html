@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — Sunday Sauce</title>
+  <meta name="description" content="Manage your Sunday Sauce account and data.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .account-page { max-width: 520px; margin: 0 auto; padding: 40px 24px 80px; }
+    .account-page h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.2rem; margin-bottom: 8px; color: var(--parchment); }
+    .account-page .subtitle { color: var(--ash); font-size: 0.95rem; margin-bottom: 40px; }
+
+    /* Auth form */
+    .auth-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.85rem; font-weight: 500; color: var(--ash); }
+    .form-group input {
+      padding: 12px 16px;
+      background: var(--smoke);
+      border: 1px solid var(--surface);
+      border-radius: 8px;
+      color: var(--parchment);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { border-color: var(--terracotta); }
+    .form-group input::placeholder { color: var(--ash); }
+
+    .error-msg {
+      background: #3D1A1A;
+      border: 1px solid #6B2020;
+      color: #E8A0A0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .success-msg {
+      background: #1A2E1A;
+      border: 1px solid #2E5A2E;
+      color: #A0D4A0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* Dashboard */
+    .dashboard { display: none; }
+    .user-info {
+      background: var(--smoke);
+      border: 1px solid var(--surface);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .user-email {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--parchment);
+      margin-bottom: 4px;
+    }
+    .user-meta { color: var(--ash); font-size: 0.85rem; }
+
+    .data-section {
+      background: var(--smoke);
+      border: 1px solid var(--surface);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .data-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--parchment);
+      margin-bottom: 4px;
+    }
+    .data-section p { color: var(--ash); font-size: 0.9rem; margin-bottom: 16px; }
+    .data-count {
+      display: inline-block;
+      background: var(--surface);
+      color: var(--parchment);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .btn-danger {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #6B2020;
+      color: #E8A0A0;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #8B3030;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-danger:hover { background: #8B3030; color: #FFD0D0; }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 10px 20px;
+      background: transparent;
+      color: var(--ash);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid var(--surface);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--ash); color: var(--parchment); }
+
+    .danger-zone {
+      border-color: #4A1A1A;
+      margin-top: 40px;
+    }
+    .danger-zone h3 { color: #E8A0A0; }
+
+    .actions-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Confirmation modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--char);
+      border: 1px solid var(--surface);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 440px;
+      width: 90%;
+    }
+    .modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #E8A0A0;
+      margin-bottom: 12px;
+    }
+    .modal p { color: var(--ash); font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .modal .confirm-input {
+      width: 100%;
+      margin: 16px 0;
+    }
+    .modal .actions-row { margin-top: 20px; justify-content: flex-end; }
+
+    .loading { opacity: 0.5; pointer-events: none; }
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--ash);
+      border-top-color: var(--parchment);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">SUNDAY <span>Sauce</span></a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="account-page">
+
+    <!-- Login Form -->
+    <div id="auth-section">
+      <h1>My Account</h1>
+      <p class="subtitle">Sign in to manage your account and data.</p>
+
+      <div id="error-msg" class="error-msg"></div>
+      <div id="success-msg" class="success-msg"></div>
+
+      <form class="auth-form" id="login-form" onsubmit="return handleLogin(event)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Your password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-primary" id="login-btn">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Dashboard (shown after login) -->
+    <div id="dashboard" class="dashboard">
+      <h1>My Account</h1>
+      <p class="subtitle">Manage your data and account settings.</p>
+
+      <div id="dash-error" class="error-msg"></div>
+      <div id="dash-success" class="success-msg"></div>
+
+      <div class="user-info">
+        <div class="user-email" id="user-email"></div>
+        <div class="user-meta" id="user-meta"></div>
+      </div>
+
+      <!-- Data overview -->
+      <div class="data-section">
+        <h3>Your Data</h3>
+        <p>Here's what we store for your account.</p>
+        <div id="data-summary">
+          <div style="margin-bottom: 12px;">
+            <strong style="color: var(--parchment); font-size: 0.9rem;">Sessions</strong>
+            <span class="data-count" id="sessions-count">—</span>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <strong style="color: var(--parchment); font-size: 0.9rem;">Character Memories</strong>
+            <span class="data-count" id="memories-count">—</span>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <strong style="color: var(--parchment); font-size: 0.9rem;">Voice Notes</strong>
+            <span class="data-count" id="notes-count">—</span>
+          </div>
+          <div>
+            <strong style="color: var(--parchment); font-size: 0.9rem;">Session Credits</strong>
+            <span class="data-count" id="credits-count">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export data -->
+      <div class="data-section">
+        <h3>Export Your Data</h3>
+        <p>Download a copy of all your data as a JSON file.</p>
+        <button class="btn-outline" onclick="exportData()">Download My Data</button>
+      </div>
+
+      <!-- Danger zone -->
+      <div class="data-section danger-zone">
+        <h3>Delete Account &amp; Data</h3>
+        <p>Permanently delete your account and all associated data. This action cannot be undone. Your session credits will be lost.</p>
+        <div class="actions-row">
+          <button class="btn-danger" onclick="showDeleteModal()">Delete My Account</button>
+          <button class="btn-outline" onclick="handleSignOut()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Delete confirmation modal -->
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal">
+      <h3>Delete your account?</h3>
+      <p>This will permanently delete:</p>
+      <ul style="color: var(--ash); font-size: 0.9rem; padding-left: 20px; list-style: disc; margin-bottom: 8px;">
+        <li>Your profile and preferences</li>
+        <li>All cooking session history</li>
+        <li>All character memories</li>
+        <li>All voice notes</li>
+        <li>Any remaining session credits</li>
+      </ul>
+      <p><strong style="color: #E8A0A0;">This cannot be undone.</strong></p>
+      <div class="form-group">
+        <label for="confirm-delete" style="color: #E8A0A0;">Type DELETE to confirm</label>
+        <input type="text" id="confirm-delete" class="confirm-input" placeholder="DELETE" autocomplete="off"
+          style="padding:12px 16px; background:var(--smoke); border:1px solid #6B2020; border-radius:8px; color:var(--parchment); font-family:'DM Sans',sans-serif; font-size:1rem; outline:none;">
+      </div>
+      <div class="actions-row">
+        <button class="btn-outline" onclick="hideDeleteModal()">Cancel</button>
+        <button class="btn-danger" id="confirm-delete-btn" onclick="handleDeleteAccount()">Delete Everything</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="logo">SUNDAY <span>Sauce</span></span>
+      <nav class="footer-links">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:sundaysauceapp@gmail.com">Contact</a>
+      </nav>
+      <span class="footer-copy">&copy; 2026 Sunday Sauce LLC. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    // ── Configuration ──
+    // Fill in your Supabase project URL and anon key
+    const SUPABASE_URL = 'https://ucdjvmoushzkfgghhpmp.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_mblO9OE9YSzQubL_X7xMNg_QLMKIyRW';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+
+    // ── Check session on load ──
+    async function init() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        currentUser = session.user;
+        showDashboard();
+      }
+    }
+    init();
+
+    // ── Helpers ──
+    function showError(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.style.display = 'block';
+      setTimeout(() => el.style.display = 'none', 8000);
+    }
+    function showSuccess(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    // ── Login ──
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('login-btn');
+
+      btn.innerHTML = '<span class="spinner"></span>Signing in...';
+      btn.disabled = true;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        showError('error-msg', error.message);
+        btn.textContent = 'Sign In';
+        btn.disabled = false;
+        return;
+      }
+
+      currentUser = data.user;
+      showDashboard();
+    }
+
+    // ── Dashboard ──
+    async function showDashboard() {
+      document.getElementById('auth-section').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+
+      document.getElementById('user-email').textContent = currentUser.email;
+      const created = new Date(currentUser.created_at).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+      document.getElementById('user-meta').textContent = 'Member since ' + created;
+
+      // Fetch data counts
+      const [sessions, memories, notes, profile] = await Promise.all([
+        supabase.from('sessions').select('id', { count: 'exact', head: true }),
+        supabase.from('character_memories').select('id', { count: 'exact', head: true }),
+        supabase.from('voice_notes').select('id', { count: 'exact', head: true }),
+        supabase.from('profiles').select('session_credits').eq('id', currentUser.id).single()
+      ]);
+
+      document.getElementById('sessions-count').textContent = (sessions.count ?? 0) + ' records';
+      document.getElementById('memories-count').textContent = (memories.count ?? 0) + ' records';
+      document.getElementById('notes-count').textContent = (notes.count ?? 0) + ' records';
+      document.getElementById('credits-count').textContent = (profile.data?.session_credits ?? 0) + ' remaining';
+    }
+
+    // ── Export data ──
+    async function exportData() {
+      const [profileRes, sessionsRes, memoriesRes, notesRes, relationshipsRes] = await Promise.all([
+        supabase.from('profiles').select('*').eq('id', currentUser.id).single(),
+        supabase.from('sessions').select('*'),
+        supabase.from('character_memories').select('id, character_id, memory_type, content, metadata, importance, created_at'),
+        supabase.from('voice_notes').select('*'),
+        supabase.from('user_character_relationships').select('*')
+      ]);
+
+      const exportObj = {
+        exported_at: new Date().toISOString(),
+        account: { email: currentUser.email, created_at: currentUser.created_at },
+        profile: profileRes.data,
+        sessions: sessionsRes.data || [],
+        character_memories: memoriesRes.data || [],
+        voice_notes: notesRes.data || [],
+        character_relationships: relationshipsRes.data || []
+      };
+
+      const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sunday-sauce-data-' + new Date().toISOString().slice(0, 10) + '.json';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      showSuccess('dash-success', 'Your data has been downloaded.');
+    }
+
+    // ── Delete account ──
+    function showDeleteModal() {
+      document.getElementById('delete-modal').classList.add('active');
+      document.getElementById('confirm-delete').value = '';
+    }
+    function hideDeleteModal() {
+      document.getElementById('delete-modal').classList.remove('active');
+    }
+
+    async function handleDeleteAccount() {
+      const confirmVal = document.getElementById('confirm-delete').value;
+      if (confirmVal !== 'DELETE') {
+        showError('dash-error', 'Please type DELETE to confirm account deletion.');
+        hideDeleteModal();
+        return;
+      }
+
+      const btn = document.getElementById('confirm-delete-btn');
+      btn.innerHTML = '<span class="spinner"></span>Deleting...';
+      btn.disabled = true;
+
+      try {
+        // Delete user data from all tables (cascade from profiles handles most)
+        // Delete profile — cascades to sessions, memories, voice_notes, relationships, introductions
+        const { error: deleteError } = await supabase.from('profiles').delete().eq('id', currentUser.id);
+
+        if (deleteError) {
+          throw new Error('Failed to delete data: ' + deleteError.message);
+        }
+
+        // Sign out
+        await supabase.auth.signOut();
+
+        hideDeleteModal();
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('auth-section').style.display = 'block';
+        showSuccess('success-msg', 'Your account and all associated data have been permanently deleted.');
+
+        currentUser = null;
+      } catch (err) {
+        hideDeleteModal();
+        showError('dash-error', err.message);
+        btn.textContent = 'Delete Everything';
+        btn.disabled = false;
+      }
+    }
+
+    // ── Sign out ──
+    async function handleSignOut() {
+      await supabase.auth.signOut();
+      currentUser = null;
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('auth-section').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
