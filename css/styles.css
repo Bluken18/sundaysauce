@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@1,300;1,400&family=DM+Sans:wght@400;500&display=swap');
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: #F2E8D5; background-color: #1A1412; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: #C4521A; text-decoration: none; transition: color 0.2s; }
+a:hover { color: #D4982B; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+/* ── Variables ── */
+:root {
+  --char: #1A1412;
+  --smoke: #2E2420;
+  --terracotta: #C4521A;
+  --saffron: #D4982B;
+  --parchment: #F2E8D5;
+  --cream: #FAF5EA;
+  --burgundy: #4A1525;
+  --wine: #6B2035;
+  --ash: #5A4A42;
+  --surface: #3D322C;
+}
+
+/* ── Typography ── */
+.display { font-family: 'Playfair Display', serif; font-weight: 900; }
+.heading { font-family: 'Playfair Display', serif; font-weight: 700; }
+.story   { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; }
+.body    { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+.label   { font-family: 'DM Sans', sans-serif; font-weight: 500; }
+
+/* ── Layout ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 80px 0; }
+
+/* ── Header ── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1A1412ee;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #2E2420;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--parchment);
+  letter-spacing: 0.02em;
+}
+.logo span { color: var(--terracotta); font-style: italic; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { color: var(--ash); font-size: 0.9rem; font-weight: 500; }
+.nav-links a:hover { color: var(--parchment); }
+
+/* Mobile nav toggle */
+.nav-toggle { display: none; }
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  width: 28px;
+  height: 20px;
+  position: relative;
+}
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--parchment);
+  position: absolute;
+  transition: 0.3s;
+}
+.nav-toggle-label span { top: 9px; }
+.nav-toggle-label span::before { content: ''; top: -7px; }
+.nav-toggle-label span::after { content: ''; top: 7px; }
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--terracotta);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: #A84215; color: var(--cream); transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--parchment);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--ash);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--parchment); color: var(--parchment); }
+
+/* ── Hero ── */
+.hero {
+  padding: 120px 0 100px;
+  text-align: center;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1.1;
+  color: var(--parchment);
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  color: var(--terracotta);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--ash);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.5;
+}
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ── Features ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.feature-card {
+  background: var(--smoke);
+  border-radius: 12px;
+  padding: 32px;
+  border: 1px solid var(--surface);
+}
+.feature-card .icon {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+.feature-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--parchment);
+}
+.feature-card p {
+  color: var(--ash);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ── How It Works ── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: var(--parchment);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.step h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: var(--parchment);
+}
+.step p {
+  color: var(--ash);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ── Section titles ── */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--parchment);
+}
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.25rem;
+  text-align: center;
+  color: var(--ash);
+  margin-bottom: 56px;
+}
+
+/* ── Guides Grid ── */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.guide-card {
+  background: var(--smoke);
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid var(--surface);
+  border-left: 4px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.guide-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.guide-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.guide-flag { font-size: 1.4rem; }
+.guide-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--parchment);
+}
+.guide-location {
+  color: var(--ash);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.guide-dish {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--saffron);
+  margin-bottom: 12px;
+}
+.guide-bio {
+  color: var(--ash);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ── CTA Section ── */
+.cta-section {
+  text-align: center;
+  padding: 100px 0;
+}
+.cta-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  color: var(--parchment);
+}
+.cta-section p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.25rem;
+  color: var(--ash);
+  margin-bottom: 32px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  background: var(--smoke);
+  border-top: 1px solid var(--surface);
+  padding: 40px 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--ash); font-size: 0.9rem; }
+.footer-links a:hover { color: var(--parchment); }
+.footer-copy { color: var(--ash); font-size: 0.85rem; }
+
+/* ── Legal Pages ── */
+.legal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+.legal-page h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+  color: var(--parchment);
+}
+.legal-date {
+  color: var(--ash);
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+}
+.legal-page h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin: 40px 0 16px;
+  color: var(--parchment);
+}
+.legal-page h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 24px 0 12px;
+  color: var(--parchment);
+}
+.legal-page p {
+  color: #9A8A7C;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.legal-page ul {
+  color: #9A8A7C;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  padding-left: 24px;
+  list-style: disc;
+}
+.legal-page li { margin-bottom: 8px; }
+.legal-page strong { color: var(--parchment); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero { padding: 80px 0 60px; }
+  .hero h1 { font-size: 2.8rem; }
+  .hero-sub { font-size: 1.25rem; }
+  .features-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+  .guides-grid { grid-template-columns: 1fr; }
+  .section { padding: 56px 0; }
+  .section-title { font-size: 2rem; }
+  .footer-inner { flex-direction: column; text-align: center; }
+
+  .nav-toggle-label { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--char);
+    border-bottom: 1px solid var(--surface);
+    flex-direction: column;
+    padding: 20px;
+    gap: 16px;
+    display: none;
+  }
+  .nav-toggle:checked ~ .nav-links { display: flex; }
+  .nav-toggle:checked ~ .nav-toggle-label span { background: transparent; }
+  .nav-toggle:checked ~ .nav-toggle-label span::before { top: 0; transform: rotate(45deg); }
+  .nav-toggle:checked ~ .nav-toggle-label span::after { top: 0; transform: rotate(-45deg); }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.2rem; }
+  .hero-sub { font-size: 1.1rem; }
+  .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 0.9rem; }
+  .section-title { font-size: 1.6rem; }
+  .guide-card { padding: 20px; }
+}
