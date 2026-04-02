@@ -51,12 +51,16 @@ ul { list-style: none; }
   height: 64px;
 }
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: 'Playfair Display', serif;
   font-weight: 900;
   font-size: 1.2rem;
   color: var(--parchment);
   letter-spacing: 0.02em;
 }
+.logo img { height: 36px; width: 36px; border-radius: 6px; }
 .logo span { color: var(--terracotta); font-style: italic; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 .nav-links { display: flex; gap: 28px; align-items: center; }
 .nav-links a { color: var(--ash); font-size: 0.9rem; font-weight: 500; }
