@@ -303,6 +303,28 @@ ul { list-style: none; }
   margin-bottom: 32px;
 }
 
+/* ── QR Code ── */
+.qr-block {
+  margin-top: 48px;
+}
+.qr-code {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+}
+.qr-hint {
+  font-family: 'DM Sans', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 0.85rem !important;
+  color: var(--ash) !important;
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+}
+
 /* ── Footer ── */
 .site-footer {
   background: var(--smoke);
