@@ -1,171 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Sunday Sauce</title>
-  <meta name="description" content="Privacy Policy for Sunday Sauce, the AI-guided cultural cooking app.">
-  <link rel="canonical" href="https://sundaysauce.app/privacy.html">
-  <meta name="robots" content="noindex">
-  <link rel="icon" type="image/png" href="assets/icon.png">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#111009; --cream:#f0e8d8; --cream-dim:#b8aa96; --red:#c0392b; --border:rgba(240,232,216,0.12); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;font-size:16px;line-height:1.8;padding:0 24px}
+    header{max-width:760px;margin:0 auto;padding:72px 0 56px;border-bottom:1px solid var(--border)}
+    .wordmark{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:28px;display:block}
+    h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,54px);font-weight:400;line-height:1.1;color:var(--cream);margin-bottom:20px}
+    .meta{font-size:13px;color:var(--cream-dim);letter-spacing:.04em}
+    .toc{max-width:760px;margin:0 auto;padding:48px 0;border-bottom:1px solid var(--border)}
+    .toc-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:block}
+    .toc ol{list-style:none;padding:0;columns:2;column-gap:48px}
+    @media(max-width:560px){.toc ol{columns:1}}
+    .toc ol li{padding:5px 0;font-size:13px;color:var(--cream-dim)}
+    .toc ol li a{color:var(--cream-dim);text-decoration:none}
+    .toc ol li a:hover{color:var(--cream)}
+    main{max-width:760px;margin:0 auto;padding:64px 0 96px}
+    section{margin-bottom:64px;padding-bottom:64px;border-bottom:1px solid var(--border);scroll-margin-top:32px}
+    section:last-child{border-bottom:none}
+    h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;color:var(--cream);margin-bottom:24px;line-height:1.15}
+    h3{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-top:36px;margin-bottom:14px}
+    p{color:var(--cream-dim);margin-bottom:16px;font-size:15px}
+    p:last-child{margin-bottom:0}
+    ul{list-style:none;padding:0;margin-bottom:16px}
+    ul li{color:var(--cream-dim);font-size:15px;padding:6px 0 6px 22px;position:relative}
+    ul li::before{content:'';position:absolute;left:0;top:16px;width:8px;height:1px;background:var(--red)}
+    a{color:var(--cream);text-decoration:underline;text-underline-offset:3px}
+    a:hover{color:var(--red)}
+    .callout{border-left:2px solid var(--red);padding:18px 22px;margin:28px 0;background:rgba(192,57,43,0.07)}
+    .callout p{font-size:14px;margin:0;line-height:1.75}
+    .callout p+p{margin-top:12px}
+    table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+    th{text-align:left;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--red);padding:10px 16px 10px 0;border-bottom:1px solid var(--border)}
+    td{color:var(--cream-dim);padding:12px 16px 12px 0;border-bottom:1px solid rgba(240,232,216,0.06);vertical-align:top}
+    td:first-child{color:var(--cream)}
+    footer{max-width:760px;margin:0 auto;padding:32px 0 72px;border-top:1px solid var(--border)}
+    footer p{font-size:13px;color:var(--cream-dim)}
+  </style>
 </head>
 <body>
+<header>
+  <span class="wordmark">Sunday Sauce</span>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Effective Date: April 1, 2026 &middot; Last Updated: April 1, 2026 &middot; Version 1.1</p>
+</header>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="/" class="logo">SUNDAY <span>Sauce</span></a>
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
-      <nav class="nav-links">
-        <a href="/">Home</a>
-        <a href="terms.html">Terms of Service</a>
-      </nav>
-    </div>
-  </header>
+<nav class="toc" aria-label="Table of contents">
+  <span class="toc-label">Contents</span>
+  <ol>
+    <li><a href="#overview">1. Who We Are</a></li>
+    <li><a href="#ai-disclosure">2. AI and Voice Disclosure</a></li>
+    <li><a href="#what-we-collect">3. What We Collect</a></li>
+    <li><a href="#how-we-use">4. How We Use Your Data</a></li>
+    <li><a href="#legal-basis">5. Legal Bases (GDPR / UK GDPR)</a></li>
+    <li><a href="#sharing">6. Data Sharing</a></li>
+    <li><a href="#retention">7. Data Retention</a></li>
+    <li><a href="#rights">8. Your Rights</a></li>
+    <li><a href="#children">9. Children's Privacy</a></li>
+    <li><a href="#international">10. International Transfers</a></li>
+    <li><a href="#security">11. Security</a></li>
+    <li><a href="#california">12. California Rights (CCPA/CPRA)</a></li>
+    <li><a href="#changes">13. Changes to This Policy</a></li>
+    <li><a href="#contact">14. Contact</a></li>
+  </ol>
+</nav>
 
-  <main class="legal-page">
+<main>
 
-    <h1>Privacy Policy</h1>
-    <p class="legal-date">Last updated: March 30, 2026 &middot; Effective: March 30, 2026</p>
+<section id="overview">
+  <h2>1. Who We Are</h2>
+  <p>Sunday Sauce is an AI-guided cooking application that leads users through regional recipes while teaching food history, culinary culture, and cooking technique, delivered through a voice-enabled AI experience. The App is operated by <strong style="color:var(--cream)">Sunday Sauce LLC</strong>, a limited liability company organized under the laws of the State of Texas, United States ("Sunday Sauce," "we," "us," or "our").</p>
+  <p>This Privacy Policy describes how we collect, use, store, share, and protect personal information through the Sunday Sauce iOS application ("App") and the website at sundaysauce.app ("Site"). By using the App or Site, you acknowledge that you have read and understood this Policy. If you do not agree, do not use the App or Site.</p>
+  <p>Questions? Contact us at <a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a></p>
+</section>
 
-    <p>Sunday Sauce LLC ("we," "us," or "our") operates the Sunday Sauce mobile application ("App"). This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use the App. We are committed to protecting your privacy and being transparent about our data practices.</p>
+<section id="ai-disclosure">
+  <h2>2. AI and Voice Disclosure</h2>
+  <div class="callout">
+    <p><strong style="color:var(--cream)">Required Disclosure — Apple App Store Review Guidelines &sect;5.1.2</strong></p>
+    <p>Sunday Sauce uses artificial intelligence and real-time voice technology to deliver its core experience. The specific third-party providers are:</p>
+    <p><strong style="color:var(--cream)">Anthropic, Inc. (Claude API)</strong> — Powers the AI guide's understanding and text responses. Your inputs are processed by Anthropic. Anthropic does not use your data to train its models without separate consent. See <a href="https://www.anthropic.com/privacy">anthropic.com/privacy</a>.</p>
+    <p><strong style="color:var(--cream)">LiveKit, Inc.</strong> — Provides real-time audio streaming that transmits your voice during a cooking session. LiveKit processes audio in transit only; we do not instruct LiveKit to store your audio. See <a href="https://livekit.io/privacy">livekit.io/privacy</a>.</p>
+    <p><strong style="color:var(--cream)">ElevenLabs, Inc.</strong> — Generates the AI guide's spoken voice responses using text-to-speech. Text from the AI's responses is sent to ElevenLabs to produce audio output. ElevenLabs does not receive your voice input or account information. See <a href="https://elevenlabs.io/privacy">elevenlabs.io/privacy</a>.</p>
+    <p>By using Sunday Sauce's voice and AI features, you explicitly consent to this real-time processing by Anthropic, LiveKit, and ElevenLabs. You may withdraw consent at any time by deleting your account; however, withdrawal means you will no longer be able to use the App's core features.</p>
+  </div>
+  <h3>What Happens to Your Voice</h3>
+  <p>Your voice is streamed in real time through LiveKit during a cooking session for speech-to-text processing. <strong style="color:var(--cream)">We do not store raw audio recordings after a session ends.</strong> Temporary in-session transcripts used to maintain conversational context are discarded when the session closes and are never written to our databases or linked to your account.</p>
+</section>
 
-    <h2>1. Information We Collect</h2>
+<section id="what-we-collect">
+  <h2>3. What We Collect</h2>
 
-    <h3>Account Information</h3>
-    <p>When you create an account, we collect your email address and display name. You may also sign in using Apple Sign In, in which case Apple provides us with your name and email address (or a private relay email) according to your Apple ID settings.</p>
+  <h3>Account Information</h3>
+  <table>
+    <thead><tr><th>Data</th><th>Detail</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Email address</td><td>Provided at registration</td><td>Account login, service communications, account recovery</td></tr>
+      <tr><td>Name</td><td>Display name provided at registration</td><td>Personalization within the App</td></tr>
+      <tr><td>Password</td><td>Stored as a one-way cryptographic hash; never stored in plaintext</td><td>Account security</td></tr>
+      <tr><td>User ID</td><td>A unique identifier assigned to your account</td><td>Service operation and data association</td></tr>
+    </tbody>
+  </table>
+  <p>Sign-in is by email and password only. We do not offer third-party sign-in (e.g., Apple Sign In, Google Sign In).</p>
 
-    <h3>Usage Data</h3>
-    <p>We collect information about how you use the App, including which guides and recipes you interact with, session duration, session history, and your session credits balance.</p>
+  <h3>Subscription and Purchase Information</h3>
+  <p>Subscriptions are managed through <strong style="color:var(--cream)">RevenueCat</strong> and processed by Apple. We do not collect or store payment card numbers, billing addresses, or financial account information. From RevenueCat we receive only: your subscription status, subscription tier, and renewal dates. See <a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a>.</p>
 
-    <h3>Voice and Conversation Data</h3>
-    <p>During live cooking sessions, your voice audio is streamed in real time through LiveKit to Deepgram for speech-to-text conversion. <strong>We do not store raw audio recordings after sessions end.</strong> Text transcripts of your conversations with AI guides may be temporarily retained for session continuity (e.g., resuming an interrupted session). Conversation data is deleted after 30 days.</p>
+  <h3>Usage and Interaction Data</h3>
+  <table>
+    <thead><tr><th>Data</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Recipe activity</td><td>Recipes viewed, started, and completed; time spent per recipe</td></tr>
+      <tr><td>Regional and cuisine exploration</td><td>Regions and cuisines you browse and select</td></tr>
+      <tr><td>Feature interactions</td><td>Use of ingredient checklist, family crew setup, step navigation</td></tr>
+      <tr><td>In-app search terms</td><td>Search queries used to find recipes or cuisines</td></tr>
+      <tr><td>Session data</td><td>Session start and end times, screens visited, navigation paths</td></tr>
+    </tbody>
+  </table>
 
-    <h3>Device Information</h3>
-    <p>We collect basic device information including device type, operating system version, and app version for compatibility and troubleshooting purposes.</p>
+  <h3>Family Crew Data</h3>
+  <p>The family crew feature allows you to add family members so each person receives age-appropriate cooking directions. We collect only the name or nickname and age range you provide for each crew member. This data is linked to your account and used solely to deliver appropriate in-app content. We do not create separate accounts for crew members or collect additional personal information about them.</p>
 
-    <h3>Purchase Information</h3>
-    <p>When you purchase session credits, transaction records are processed by Apple and managed through RevenueCat. <strong>We do not collect or store your payment card information.</strong> We receive purchase confirmation data including product purchased, date, and transaction identifier.</p>
+  <h3>Voice and Audio Data</h3>
+  <p>During a cooking session, your voice is transmitted in real time through LiveKit for speech-to-text processing. Raw audio is not stored after the session ends, and no transcript is retained in our systems after the session closes.</p>
 
-    <h2>2. AI Processing and Third-Party Data Sharing</h2>
+  <h3>Device and Diagnostic Data</h3>
+  <table>
+    <thead><tr><th>Data</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Device information</td><td>Device model, iOS version, app version</td></tr>
+      <tr><td>Crash and performance data</td><td>Error logs and performance metrics for bug resolution; stored in Supabase and not linked to your identity</td></tr>
+      <tr><td>IP address</td><td>Collected at login for security and fraud prevention; not retained long-term</td></tr>
+    </tbody>
+  </table>
 
-    <p><strong>Your cooking sessions are powered by artificial intelligence.</strong> The following third-party AI services process your data during sessions:</p>
+  <h3>Data We Do Not Collect</h3>
+  <p>Sunday Sauce does not collect: dietary preferences or restrictions, biometric data, government identification numbers, precise real-time geolocation, camera input, advertising identifiers (IDFA), or any data for advertising or cross-app tracking. We do not offer or use third-party social sign-in.</p>
+</section>
 
-    <ul>
-      <li><strong>Anthropic (Claude)</strong> — Your conversation text is sent to Anthropic's Claude API for generating guide responses. Anthropic processes this data according to their <a href="https://www.anthropic.com/privacy" rel="noopener">privacy policy</a>. Anthropic does not use API inputs to train their models.</li>
-      <li><strong>Deepgram</strong> — Your voice audio is streamed to Deepgram for real-time speech-to-text conversion. Deepgram processes audio according to their privacy policy.</li>
-      <li><strong>Cartesia</strong> — Guide text responses are sent to Cartesia for voice synthesis (text-to-speech). Cartesia processes this data according to their privacy policy.</li>
-      <li><strong>LiveKit</strong> — Provides the real-time audio infrastructure for live sessions. LiveKit processes audio streams according to their privacy policy.</li>
-    </ul>
+<section id="how-we-use">
+  <h2>4. How We Use Your Data</h2>
 
-    <p>These services receive only the data necessary to provide their specific function during your cooking session. We have data processing agreements with each provider.</p>
+  <h3>Service Delivery</h3>
+  <ul>
+    <li>Creating and managing your account and authentication</li>
+    <li>Delivering AI-guided, voice-enabled recipe and cultural content</li>
+    <li>Providing step-by-step cooking guidance and ingredient checklists</li>
+    <li>Operating the family crew feature with age-appropriate directions</li>
+    <li>Managing your subscription through RevenueCat and Apple</li>
+    <li>Sending service-related notifications where you have granted permission</li>
+  </ul>
 
-    <h2>3. How We Use Your Information</h2>
-    <p>We use the information we collect to:</p>
-    <ul>
-      <li>Provide, maintain, and improve the App and cooking sessions.</li>
-      <li>Process your purchases and manage session credits.</li>
-      <li>Enable session resumption if a session is interrupted.</li>
-      <li>Communicate with you about your account, purchases, or App updates.</li>
-      <li>Analyze usage patterns to improve the App experience (using anonymized data).</li>
-      <li>Ensure the safety and security of the App.</li>
-      <li>Comply with legal obligations.</li>
-    </ul>
+  <h3>Personalization</h3>
+  <ul>
+    <li>Tailoring recipe suggestions based on your past activity and regional preferences</li>
+    <li>Remembering your progress and preferences within the App</li>
+  </ul>
 
-    <h2>4. Data Sharing</h2>
-    <p><strong>We do not sell your personal information to third parties.</strong></p>
-    <p>We share your data only with the following service providers, solely for the purposes of operating the App:</p>
-    <ul>
-      <li><strong>Supabase</strong> — Authentication, database, and account management.</li>
-      <li><strong>Anthropic</strong> — AI conversation processing (as described in Section 2).</li>
-      <li><strong>Deepgram</strong> — Speech-to-text processing (as described in Section 2).</li>
-      <li><strong>Cartesia</strong> — Text-to-speech processing (as described in Section 2).</li>
-      <li><strong>LiveKit</strong> — Real-time audio infrastructure (as described in Section 2).</li>
-      <li><strong>RevenueCat</strong> — In-app purchase management.</li>
-      <li><strong>Apple</strong> — App Store purchases and Sign In with Apple.</li>
-    </ul>
-    <p>We may also disclose your information if required by law, court order, or governmental regulation, or if we believe disclosure is necessary to protect our rights, your safety, or the safety of others.</p>
+  <h3>Service Improvement</h3>
+  <ul>
+    <li>Analyzing aggregate, anonymized usage patterns to improve App functionality and content</li>
+    <li>Identifying and resolving bugs using crash and diagnostic data</li>
+  </ul>
 
-    <h2>5. Data Retention</h2>
-    <ul>
-      <li><strong>Account data</strong> is retained for as long as your account is active. Upon account deletion, your data is removed within 30 days.</li>
-      <li><strong>Session conversation data</strong> is retained for up to 30 days for session continuity, then deleted.</li>
-      <li><strong>Voice audio</strong> is processed in real time and not stored after the session ends.</li>
-      <li><strong>Purchase records</strong> are retained as required for financial and legal compliance.</li>
-      <li><strong>Analytics data</strong> is retained in anonymized, aggregated form.</li>
-    </ul>
+  <h3>Security and Legal Compliance</h3>
+  <ul>
+    <li>Detecting and preventing unauthorized access, fraud, and abuse</li>
+    <li>Complying with applicable laws, regulations, and valid legal process</li>
+    <li>Enforcing our Terms of Service</li>
+    <li>Protecting the rights, safety, and property of Sunday Sauce LLC, our users, and others</li>
+  </ul>
 
-    <h2>6. Your Rights</h2>
+  <p>We do not use your personal data for advertising. We do not sell your personal information. We do not build advertising profiles. Sunday Sauce is ad-free.</p>
+</section>
 
-    <h3>All Users</h3>
-    <p>You have the right to:</p>
-    <ul>
-      <li>Access the personal information we hold about you.</li>
-      <li>Request correction of inaccurate information.</li>
-      <li>Request deletion of your account and personal data.</li>
-      <li>Delete your account at any time through the App's settings.</li>
-    </ul>
+<section id="legal-basis">
+  <h2>5. Legal Bases for Processing (GDPR / UK GDPR)</h2>
+  <p>For users in the European Union and United Kingdom, we process personal data only on valid legal grounds:</p>
+  <table>
+    <thead><tr><th>Processing Activity</th><th>Legal Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Account creation and login</td><td>Performance of a contract (Art. 6(1)(b))</td></tr>
+      <tr><td>Subscription management via RevenueCat</td><td>Performance of a contract (Art. 6(1)(b))</td></tr>
+      <tr><td>AI-guided recipe and cooking delivery</td><td>Performance of a contract (Art. 6(1)(b))</td></tr>
+      <tr><td>Real-time voice processing (LiveKit, Anthropic, ElevenLabs)</td><td>Explicit consent (Art. 6(1)(a))</td></tr>
+      <tr><td>Family crew data</td><td>Performance of a contract (Art. 6(1)(b))</td></tr>
+      <tr><td>Usage analytics and App improvement</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
+      <tr><td>Security and fraud prevention</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
+      <tr><td>Legal compliance</td><td>Legal obligation (Art. 6(1)(c))</td></tr>
+    </tbody>
+  </table>
+  <p>Where we rely on consent, you may withdraw it at any time. Withdrawal does not affect the lawfulness of prior processing. Where we rely on legitimate interests, you have the right to object — see Section 8.</p>
+</section>
 
-    <h3>EU/EEA Users (GDPR)</h3>
-    <p>If you are located in the EU or EEA, you have additional rights under the General Data Protection Regulation, including:</p>
-    <ul>
-      <li><strong>Right of access</strong> (Art. 15) — obtain a copy of your personal data.</li>
-      <li><strong>Right to rectification</strong> (Art. 16) — correct inaccurate data.</li>
-      <li><strong>Right to erasure</strong> (Art. 17) — request deletion of your data.</li>
-      <li><strong>Right to restriction</strong> (Art. 18) — restrict processing in certain circumstances.</li>
-      <li><strong>Right to data portability</strong> (Art. 20) — receive your data in a structured, machine-readable format.</li>
-      <li><strong>Right to object</strong> (Art. 21) — object to processing based on legitimate interests.</li>
-      <li><strong>Right to withdraw consent</strong> at any time, without affecting the lawfulness of prior processing.</li>
-      <li><strong>Right to lodge a complaint</strong> with your local data protection supervisory authority.</li>
-    </ul>
-    <p>Our lawful bases for processing are: contract performance (providing the service), legitimate interests (security, improvement), and consent (where applicable).</p>
+<section id="sharing">
+  <h2>6. Data Sharing</h2>
+  <p>We do not sell, rent, or trade your personal information. We share data only as described below, and only to the extent necessary to operate the App.</p>
 
-    <h3>California Users (CCPA/CPRA)</h3>
-    <p>If you are a California resident, you have the right to:</p>
-    <ul>
-      <li>Know what personal information we collect, use, and disclose.</li>
-      <li>Request deletion of your personal information.</li>
-      <li>Opt out of the sale or sharing of personal information. <strong>We do not sell or share your personal information.</strong></li>
-      <li>Non-discrimination for exercising your privacy rights.</li>
-    </ul>
+  <h3>Anthropic, Inc. — AI Processing</h3>
+  <p>Your in-app inputs are processed by Anthropic to generate the AI guide's responses. Anthropic acts as a data processor under our instruction. We have a Data Processing Agreement with Anthropic. Servers are in the United States; see Section 10 for transfer safeguards.</p>
 
-    <h3>Exercising Your Rights</h3>
-    <p>To exercise any of these rights, contact us at <a href="mailto:sundaysauceapp@gmail.com">sundaysauceapp@gmail.com</a>. We will respond to your request within 30 days (or sooner as required by applicable law).</p>
+  <h3>LiveKit, Inc. — Real-Time Voice Infrastructure</h3>
+  <p>Your voice audio is transmitted in real time through LiveKit during cooking sessions for speech-to-text conversion. We do not instruct LiveKit to retain audio beyond transmission. See <a href="https://livekit.io/privacy">livekit.io/privacy</a>.</p>
 
-    <h2>7. Data Security</h2>
-    <p>We implement industry-standard security measures to protect your personal information, including encrypted connections (TLS), row-level security on our database, and secure authentication. However, no method of electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.</p>
+  <h3>ElevenLabs, Inc. — Text-to-Speech</h3>
+  <p>Text content from the AI guide's responses is sent to ElevenLabs to produce spoken audio output. ElevenLabs does not receive your account information or voice input. See <a href="https://elevenlabs.io/privacy">elevenlabs.io/privacy</a>.</p>
 
-    <h2>8. Children's Privacy</h2>
-    <p>The App is not directed at children under 13. We do not knowingly collect personal information from children under 13. If we discover that we have collected personal information from a child under 13, we will delete it promptly. If you believe a child under 13 has provided us with personal information, please contact us at <a href="mailto:sundaysauceapp@gmail.com">sundaysauceapp@gmail.com</a>.</p>
+  <h3>RevenueCat, Inc. — Subscription Management</h3>
+  <p>RevenueCat manages subscription state and purchase verification. RevenueCat receives your User ID and subscription status. It does not receive your name, email, or voice data. See <a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a>.</p>
 
-    <h2>9. International Data Transfers</h2>
-    <p>Your data may be processed in the United States, where our service providers (Supabase, Anthropic, Deepgram, Cartesia, LiveKit, RevenueCat) operate. If you are located outside the United States, your data will be transferred to and processed in the United States. For EU/EEA users, these transfers are protected by standard contractual clauses or equivalent safeguards as required by GDPR.</p>
+  <h3>Apple Inc. — App Store and Payment Processing</h3>
+  <p>Apple processes all in-app purchases. We do not receive payment card data from Apple, only subscription confirmation. Apple's privacy policy governs that processing.</p>
 
-    <h2>10. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of material changes through the App or by email. The "Last updated" date at the top reflects the most recent revision. Your continued use of the App after changes take effect constitutes acceptance of the updated policy.</p>
+  <h3>Supabase — Cloud Database and Infrastructure</h3>
+  <p>We use Supabase as our cloud database to store account data and usage records. Supabase acts as a data processor under our instruction, is bound by a Data Processing Agreement, and is prohibited from using your data for its own purposes. See <a href="https://supabase.com/privacy">supabase.com/privacy</a>.</p>
 
-    <h2>11. Contact Us</h2>
-    <p>If you have questions about this Privacy Policy or our data practices, contact us at:</p>
-    <p>
-      Sunday Sauce LLC<br>
-      Email: <a href="mailto:sundaysauceapp@gmail.com">sundaysauceapp@gmail.com</a>
-    </p>
+  <h3>Law Enforcement and Legal Process</h3>
+  <p>We may disclose personal information when required by law, court order, or governmental authority, or where we have a good-faith belief that disclosure is necessary to comply with a legal obligation, protect our legal rights, prevent wrongdoing, or protect user or public safety. Where permitted by law, we will attempt to notify you before any such disclosure.</p>
 
-  </main>
+  <h3>Business Transfers</h3>
+  <p>If Sunday Sauce LLC undergoes a merger, acquisition, reorganization, or sale of assets, your personal information may transfer to the acquiring entity. We will notify you by email and in-app notice at least 30 days before any such transfer and give you the opportunity to delete your account beforehand. Any successor entity will be bound by this Policy or a policy offering no less protection.</p>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span class="logo">SUNDAY <span>Sauce</span></span>
-      <nav class="footer-links">
-        <a href="terms.html">Terms of Service</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="account.html">My Account</a>
-        <a href="mailto:sundaysauceapp@gmail.com">Contact</a>
-      </nav>
-      <span class="footer-copy">&copy; 2026 Sunday Sauce LLC. All rights reserved.</span>
-    </div>
-  </footer>
+  <h3>With Your Explicit Consent</h3>
+  <p>We may share your information with other parties where you have given explicit consent to do so. We will always identify what is being shared, with whom, and why before seeking that consent.</p>
+</section>
 
+<section id="retention">
+  <h2>7. Data Retention</h2>
+  <table>
+    <thead><tr><th>Data Category</th><th>Retention Period</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td>Account data (name, email)</td><td>Duration of account; deleted within 30 days of account deletion</td><td>Service delivery</td></tr>
+      <tr><td>Subscription records</td><td>7 years after subscription ends</td><td>Tax and accounting legal obligations</td></tr>
+      <tr><td>Usage and interaction data</td><td>12 months, then anonymized or deleted</td><td>Personalization and service improvement</td></tr>
+      <tr><td>Family crew data</td><td>Duration of account; deleted within 30 days of account deletion</td><td>Service delivery</td></tr>
+      <tr><td>Voice audio</td><td>Not stored — discarded in real time at session end</td><td>Not applicable</td></tr>
+      <tr><td>Session transcripts</td><td>Not stored — discarded at session end</td><td>Not applicable</td></tr>
+      <tr><td>Crash and diagnostic data</td><td>90 days</td><td>Bug resolution</td></tr>
+      <tr><td>Anonymized aggregate analytics</td><td>Indefinite (contains no personal data)</td><td>Product improvement</td></tr>
+      <tr><td>Data under legal hold</td><td>Until resolution of the relevant legal matter</td><td>Legal obligation</td></tr>
+    </tbody>
+  </table>
+  <p>Delete your account at any time within the App under <strong style="color:var(--cream)">Settings &rarr; Account &rarr; Delete Account</strong>, or by emailing <a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a>. Personal data is deleted within 30 days, except where legal retention is required.</p>
+</section>
+
+<section id="rights">
+  <h2>8. Your Rights</h2>
+
+  <h3>Rights Available to All Users</h3>
+  <ul>
+    <li><strong style="color:var(--cream)">Access:</strong> Request a copy of the personal information we hold about you</li>
+    <li><strong style="color:var(--cream)">Correction:</strong> Request correction of inaccurate or incomplete data</li>
+    <li><strong style="color:var(--cream)">Deletion:</strong> Request deletion of your personal information, subject to legal retention requirements</li>
+    <li><strong style="color:var(--cream)">Withdraw Consent:</strong> Withdraw consent for voice and AI processing at any time by deleting your account</li>
+    <li><strong style="color:var(--cream)">Opt Out of Communications:</strong> Unsubscribe from non-essential communications at any time</li>
+  </ul>
+
+  <h3>Additional Rights for EU and UK Users (GDPR)</h3>
+  <ul>
+    <li><strong style="color:var(--cream)">Data Portability:</strong> Receive your personal data in a structured, machine-readable format</li>
+    <li><strong style="color:var(--cream)">Restriction of Processing:</strong> Request restriction of processing in certain circumstances</li>
+    <li><strong style="color:var(--cream)">Object to Processing:</strong> Object to processing based on legitimate interests; we will cease unless we have compelling legitimate grounds</li>
+    <li><strong style="color:var(--cream)">Complaints:</strong> Lodge a complaint with your national data protection authority. UK users may contact the ICO at <a href="https://ico.org.uk">ico.org.uk</a></li>
+  </ul>
+
+  <p>To exercise any right, email <a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a> with the subject "Privacy Rights Request." We will respond within 30 days, or 45 days for complex requests (with notice). We will verify your identity before processing. We will not discriminate against you for exercising your rights.</p>
+</section>
+
+<section id="children">
+  <h2>9. Children's Privacy</h2>
+  <p>Sunday Sauce is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. To create an account, you must be at least 13 years old. Users between 13 and 17 must have parental or guardian consent to use the App.</p>
+  <p>If you believe a child under 13 has provided us with personal information, contact us at <a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a> and we will delete it promptly.</p>
+
+  <h3>Family Crew Feature and Minors</h3>
+  <p>The family crew feature allows the primary account holder to assign age-appropriate cooking roles to family members, including minors. Sunday Sauce does not create separate accounts for minor crew members; all crew data is associated with the primary account holder. The account holder represents that they have authority to enroll family members, and that for any minor, a parent or legal guardian has consented to participation. We collect only a name or nickname and age range for crew members, used solely to deliver age-appropriate content.</p>
+  <p>We comply with the Children's Online Privacy Protection Act (COPPA) and the 2025 COPPA Rule amendments. If we discover we have inadvertently collected data from a child under 13, we will delete it immediately.</p>
+</section>
+
+<section id="international">
+  <h2>10. International Data Transfers</h2>
+  <p>Sunday Sauce LLC is based in the United States. All of our third-party service providers — Anthropic, LiveKit, ElevenLabs, RevenueCat, and Supabase — process data in the United States. If you use the App from the EU or UK, your personal information will be transferred to and processed in the United States.</p>
+  <p>For EU users, we rely on Standard Contractual Clauses (SCCs) as the legal mechanism for these transfers. For UK users, we rely on the UK International Data Transfer Agreement (IDTA) or UK addendum to EU SCCs, as applicable. Our Data Processing Agreements with each provider include appropriate transfer mechanisms.</p>
+  <p>By using Sunday Sauce from any jurisdiction, you acknowledge that your data may be processed in the United States and that US data protection law may differ from the laws of your country.</p>
+</section>
+
+<section id="security">
+  <h2>11. Security</h2>
+  <p>We implement technical, administrative, and organizational security measures to protect your personal information, including:</p>
+  <ul>
+    <li>Encrypted data transmission using TLS 1.2 or higher for all data in transit</li>
+    <li>Encryption of personal data stored in Supabase at rest</li>
+    <li>Hashed password storage — passwords are never stored in plaintext</li>
+    <li>Access controls limiting which personnel can access personal data</li>
+    <li>Regular monitoring of systems for security vulnerabilities</li>
+  </ul>
+  <p>No security system is impenetrable and we cannot guarantee absolute security. In the event of a data breach likely to create risk to your rights or freedoms, we will notify you and applicable regulatory authorities within the timeframes required by law (72 hours under GDPR; as soon as reasonably practicable for other jurisdictions).</p>
+  <p>You are responsible for maintaining the confidentiality of your password. Contact us immediately at <a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a> if you suspect unauthorized access to your account.</p>
+</section>
+
+<section id="california">
+  <h2>12. California Resident Rights (CCPA / CPRA)</h2>
+  <p>This section applies to California residents and supplements the rest of this Policy under the CCPA as amended by the CPRA.</p>
+
+  <h3>Categories of Personal Information Collected in the Past 12 Months</h3>
+  <table>
+    <thead><tr><th>CCPA Category</th><th>Examples from Sunday Sauce</th><th>Collected</th></tr></thead>
+    <tbody>
+      <tr><td>Identifiers</td><td>Name, email address, user ID, IP address</td><td>Yes</td></tr>
+      <tr><td>Commercial information</td><td>Subscription tier and purchase history via RevenueCat</td><td>Yes</td></tr>
+      <tr><td>Internet or network activity</td><td>Recipe interactions, in-app navigation, search terms</td><td>Yes</td></tr>
+      <tr><td>Audio data</td><td>Voice audio during sessions (real-time processing only; not stored after session ends)</td><td>Temporarily, in transit only</td></tr>
+      <tr><td>Inferences</td><td>Regional cuisine preferences inferred from usage patterns</td><td>Yes</td></tr>
+      <tr><td>Geolocation data</td><td>Precise real-time location</td><td>No</td></tr>
+      <tr><td>Biometric data</td><td>Biometric identifiers or information</td><td>No</td></tr>
+      <tr><td>Sensitive personal information</td><td>Dietary restrictions or health-related data</td><td>No</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Sale and Sharing of Personal Information</h3>
+  <p>Sunday Sauce does not sell personal information as defined under the CCPA. We do not share personal information with third parties for cross-context behavioral advertising. No "Do Not Sell or Share" link is required; however, you may contact us to confirm your data is not sold or shared.</p>
+
+  <h3>Your California Rights</h3>
+  <ul>
+    <li><strong style="color:var(--cream)">Right to Know:</strong> Request disclosure of personal information we have collected, used, and disclosed about you in the past 12 months</li>
+    <li><strong style="color:var(--cream)">Right to Delete:</strong> Request deletion of personal information, subject to legal exceptions</li>
+    <li><strong style="color:var(--cream)">Right to Correct:</strong> Request correction of inaccurate personal information we hold</li>
+    <li><strong style="color:var(--cream)">Right to Opt Out:</strong> Opt out of sale or sharing of personal information (we do not sell or share)</li>
+    <li><strong style="color:var(--cream)">Right to Non-Discrimination:</strong> We will not discriminate against you for exercising any of these rights</li>
+  </ul>
+  <p>Submit requests by emailing <a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a>. We will verify your identity and respond within 45 days. Complex requests may receive an additional 45-day extension with notice. You may designate an authorized agent to submit requests on your behalf.</p>
+</section>
+
+<section id="changes">
+  <h2>13. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy to reflect changes in our practices, technology, legal requirements, or the services we use. When we make material changes we will:</p>
+  <ul>
+    <li>Update the "Last Updated" and "Effective Date" at the top of this page</li>
+    <li>Notify you by email to the address on your account at least 14 days before the change takes effect</li>
+    <li>Display a prominent notice within the App</li>
+  </ul>
+  <p>For non-material changes, we will update the date and post the revised Policy without prior notice. Continued use of the App after the effective date constitutes acceptance of the updated Policy. Prior versions are available upon request at <a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a>.</p>
+</section>
+
+<section id="contact">
+  <h2>14. Contact</h2>
+  <p>For questions, requests, or concerns about this Policy or our data practices:</p>
+  <p><strong style="color:var(--cream)">Sunday Sauce LLC</strong><br>Austin, Texas, United States<br><a href="mailto:privacy@sundaysauce.app">privacy@sundaysauce.app</a></p>
+  <p>We aim to respond to all inquiries within 5 business days. For formal rights requests, see the response timelines in Sections 8 and 12.</p>
+  <p>EU and UK residents unsatisfied with our response have the right to lodge a complaint with their local data protection authority. UK residents may contact the Information Commissioner's Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
+</section>
+
+</main>
+<footer>
+  <p>&copy; 2026 Sunday Sauce LLC. All rights reserved. &middot; <a href="/terms">Terms of Service</a> &middot; <a href="/">Home</a></p>
+</footer>
 </body>
 </html>
