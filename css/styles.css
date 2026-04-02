@@ -19,7 +19,7 @@ ul { list-style: none; }
   --cream: #FAF5EA;
   --burgundy: #4A1525;
   --wine: #6B2035;
-  --ash: #A89888;
+  --ash: #C8B8A8;
   --surface: #3D322C;
 }
 
@@ -350,13 +350,13 @@ ul { list-style: none; }
   color: var(--parchment);
 }
 .legal-page p {
-  color: #9A8A7C;
+  color: var(--ash);
   font-size: 0.95rem;
   line-height: 1.7;
   margin-bottom: 16px;
 }
 .legal-page ul {
-  color: #9A8A7C;
+  color: var(--ash);
   font-size: 0.95rem;
   line-height: 1.7;
   margin-bottom: 16px;
